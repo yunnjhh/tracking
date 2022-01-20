@@ -22,10 +22,6 @@ public class CategoryContents {
     @Column(name = "list_order")
     private Integer listOrder;
 
-    public CategoryContents(CategoryContentsDto dto) {
-        BeanUtils.copyProperties(dto, this);
-    }
-
     public CategoryContentsDto toDomain() {
         CategoryContentsDto categoryContentsDto = new CategoryContentsDto();
         BeanUtils.copyProperties(this, categoryContentsDto);

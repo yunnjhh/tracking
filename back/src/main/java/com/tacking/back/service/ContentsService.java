@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +20,9 @@ public class ContentsService {
 
     @Autowired
     SequenceService sequenceService;
+
+    @Autowired
+    CategoryContentsService categoryContentsService;
 
     public ContentsDto findContentsById(String contentsId) {
 
@@ -38,11 +40,12 @@ public class ContentsService {
         String contentsId = sequenceService.generateId(SequenceType.CONTENTS);
         contentsRequest.setId(contentsId);
 
-//        System.out.println("생성된 ID : "+contentsId);
-
         Contents contents = contentsRepository.save(ContentsMapper.INSTANCE.dtoToEntity(contentsRequest));
+        ContentsDto dto = ContentsMapper.INSTANCE.entityToDto(contents, contentsRequest.getCategoryId());
 
-        return ContentsMapper.INSTANCE.entityToDto(contents);
+        categoryContentsService.registerCategoryContentsMapping(contentsRequest.getCategoryId(), dto.getId());
+
+        return dto;
 
     }
 

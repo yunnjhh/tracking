@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-19T06:23:08+0900",
+    date = "2022-01-21T00:03:00+0900",
     comments = "version: 1.4.1.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-7.1.jar, environment: Java 1.8.0_282 (Azul Systems, Inc.)"
 )
 @Component
@@ -39,6 +39,27 @@ public class ContentsMapperImpl implements ContentsMapper {
 
         ContentsDto contentsDto = new ContentsDto();
 
+        contentsDto.setId( contents.getId() );
+        contentsDto.setName( contents.getName() );
+        contentsDto.setDescription( contents.getDescription() );
+        contentsDto.setImg_path( contents.getImg_path() );
+        contentsDto.setDeleted( contents.getDeleted() );
+        contentsDto.setViewedAt( contents.getViewedAt() );
+        contentsDto.setRegisteredAt( contents.getRegisteredAt() );
+        contentsDto.setModifiedAt( contents.getModifiedAt() );
+
+        return contentsDto;
+    }
+
+    @Override
+    public ContentsDto entityToDto(Contents contents, String categoryId) {
+        if ( contents == null ) {
+            return null;
+        }
+
+        ContentsDto contentsDto = new ContentsDto();
+
+        contentsDto.setCategoryId( setCategoryId( contents, categoryId ) );
         contentsDto.setId( contents.getId() );
         contentsDto.setName( contents.getName() );
         contentsDto.setDescription( contents.getDescription() );

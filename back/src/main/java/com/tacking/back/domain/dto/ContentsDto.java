@@ -11,6 +11,8 @@ public class ContentsDto {
 
     private String id;
 
+    private String categoryId;
+
     private String name;
 
     private String description;
