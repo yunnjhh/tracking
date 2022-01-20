@@ -10,7 +10,6 @@ create table contents
     modified_time timestamp default null
 ) comment '컨텐츠';
  
- -- 외래키 설정 확인 
 create table category
 (
     id varchar(255) primary key, 
@@ -19,7 +18,6 @@ create table category
     registered_time timestamp not null, 
     modified_time timestamp default null
 ) comment '분류';
-
 
 create table category_contents
 (
@@ -46,6 +44,8 @@ create table bookmark
     register_time timestamp not null
 ) comment '북마크';
 
+alter table category
+modify enabled tinyint(1);
 
 -- 확인 쿼리  
 select t.TABLE_NAME, t.TABLE_COMMENT

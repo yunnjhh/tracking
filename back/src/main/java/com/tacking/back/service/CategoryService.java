@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,5 +41,13 @@ public class CategoryService {
 
         Category category = categoryRepository.save(CategoryMapper.INSTANCE.dtoToEntity(dto));
         return CategoryMapper.INSTANCE.entityToDto(category);
+    }
+
+    public List<CategoryDto> findEnabledCategoryIds() {
+
+        List<CategoryDto> categoryDtos = new ArrayList<>();
+        List<Category> categories = categoryRepository.findAllByEnabledTrue();
+        categories.stream().forEach(c -> categoryDtos.add(CategoryMapper.INSTANCE.entityToDto(c)));
+        return categoryDtos;
     }
 }

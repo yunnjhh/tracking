@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -68,5 +70,11 @@ public class ContentsService {
         contentsRepository.save(ContentsMapper.INSTANCE.dtoToEntity(originalContents));
     }
 
+    public List<ContentsDto> findContentsByCategory(String categoryId) {
 
+        List<ContentsDto> contentsDtos = new ArrayList<>();
+        List<Contents> contents = contentsRepository.findByCategory(categoryId);
+        contents.stream().forEach(c -> contentsDtos.add(ContentsMapper.INSTANCE.entityToDto(c)));
+        return contentsDtos;
+    }
 }

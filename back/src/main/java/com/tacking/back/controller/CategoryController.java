@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/category")
 public class CategoryController {
@@ -29,6 +31,12 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto registerCategory(@RequestBody CategoryDto dto) {
         return categoryService.registerCategory(dto);
+    }
+
+    @GetMapping("/enabled")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CategoryDto> findEnabledCategoryIds() {
+        return categoryService.findEnabledCategoryIds();
     }
 
 }

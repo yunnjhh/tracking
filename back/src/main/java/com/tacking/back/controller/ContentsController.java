@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/contents")
@@ -30,6 +33,14 @@ public class ContentsController {
     public ContentsDto findContents(@PathVariable String id) {
         System.out.println("find : "+id);
         return contentsService.findContentsById(id);
+    }
+
+    @GetMapping("/by")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ContentsDto> findContentsByCategory(@RequestParam("categoryId") String categoryId) {
+        System.out.println("--------------------");
+        System.out.println(categoryId);
+        return contentsService.findContentsByCategory(categoryId);
     }
 
     @PostMapping
