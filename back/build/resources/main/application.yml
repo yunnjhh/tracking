@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: tracking
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tracking
+    #    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    #    url: jdbc:log4jdbc:mariadb://10.178.66.101:3306/skuniv
+    username: tracking
+    password: tracking-1
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: true
+    format-sql: true
+
+server:
+  port: 8800
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+
+
+# file - upload
+#  servlet:
+#    max-file-size: 500KB
+#    max-request-size: 500KB
+#    hikari:
+#      connection-timeout: 3000
+#      maximum-pool-size: 10
+#      maxLifetime: 30000
+#      transaction-isolation: TRANSACTION_READ_UNCOMMITTED

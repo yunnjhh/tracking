@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: tracking
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tracking
+    username: tracking
+    password: tracking-1
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: true
+    format-sql: true
+
+server:
+  port: 8800
+
